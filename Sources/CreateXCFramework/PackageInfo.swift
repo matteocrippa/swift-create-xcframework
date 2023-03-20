@@ -188,7 +188,9 @@ struct PackageInfo {
         }
 
         let xcodeTargetNames = project.frameworkTargets.map { $0.name }
-        let invalidProducts = productNames.filter { xcodeTargetNames.contains($0) == false }
+        let invalidProducts = productNames.filter { productName in
+            xcodeTargetNames.filter { $0.contains(productName) == false }.isEmpty == false
+        }
         guard invalidProducts.isEmpty == true else {
 
             let allLibraryProductNames = self.manifest.libraryProductNames
