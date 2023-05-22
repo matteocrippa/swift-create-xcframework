@@ -146,10 +146,10 @@ struct PackageInfo {
         var errors = [PackageValidationError]()
 
         // check the graph for binary targets
-//        let binary = self.graph.allTargets.filter { $0.type == .binary }
-//        if binary.isEmpty == false {
-//            errors.append(.containsBinaryTargets(binary.map(\.name)))
-//        }
+        let binary = self.graph.allTargets.filter { $0.type == .binary }
+        if binary.isEmpty == false {
+            errors.append(.containsBinaryTargets(binary.map(\.name)))
+        }
 
         // check for system modules
         let system = self.graph.allTargets.filter { $0.type == .systemModule }
